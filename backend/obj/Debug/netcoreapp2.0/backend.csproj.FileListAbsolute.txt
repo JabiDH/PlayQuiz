@@ -1,0 +1,11 @@
+C:\git\QuizApp\src\backend\backend\bin\Debug\netcoreapp2.0\backend.dll
+C:\git\QuizApp\src\backend\backend\bin\Debug\netcoreapp2.0\backend.deps.json
+C:\git\QuizApp\src\backend\backend\bin\Debug\netcoreapp2.0\backend.runtimeconfig.json
+C:\git\QuizApp\src\backend\backend\bin\Debug\netcoreapp2.0\backend.runtimeconfig.dev.json
+C:\git\QuizApp\src\backend\backend\bin\Debug\netcoreapp2.0\backend.pdb
+C:\git\QuizApp\src\backend\backend\obj\Debug\netcoreapp2.0\backend.csprojResolveAssemblyReference.cache
+C:\git\QuizApp\src\backend\backend\obj\Debug\netcoreapp2.0\backend.csproj.CoreCompileInputs.cache
+C:\git\QuizApp\src\backend\backend\obj\Debug\netcoreapp2.0\backend.AssemblyInfoInputs.cache
+C:\git\QuizApp\src\backend\backend\obj\Debug\netcoreapp2.0\backend.AssemblyInfo.cs
+C:\git\QuizApp\src\backend\backend\obj\Debug\netcoreapp2.0\backend.dll
+C:\git\QuizApp\src\backend\backend\obj\Debug\netcoreapp2.0\backend.pdb

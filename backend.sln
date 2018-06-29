@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "backend", "backend\backend.csproj", "{94E2BFE9-8A0A-4D23-ACC0-36A9FD374E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend_xunit", "backend_xunit\backend_xunit.csproj", "{A0C2BC92-556A-41E1-BE45-4C13B2F59859}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94E2BFE9-8A0A-4D23-ACC0-36A9FD374E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E2BFE9-8A0A-4D23-ACC0-36A9FD374E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E2BFE9-8A0A-4D23-ACC0-36A9FD374E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E2BFE9-8A0A-4D23-ACC0-36A9FD374E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C2BC92-556A-41E1-BE45-4C13B2F59859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C2BC92-556A-41E1-BE45-4C13B2F59859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C2BC92-556A-41E1-BE45-4C13B2F59859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C2BC92-556A-41E1-BE45-4C13B2F59859}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E693FD7F-02BE-4B56-B511-519616E5BC7D}
+	EndGlobalSection
+EndGlobal
