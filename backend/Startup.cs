@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,9 +36,9 @@ namespace backend
                 .AllowAnyMethod()
                 .AllowAnyHeader();
             }));
-
-            services.AddDbContext<QuizContext>(opt => opt.UseInMemoryDatabase("quiz"));
-            services.AddDbContext<UserDbContext>(opt => opt.UseInMemoryDatabase("user"));
+            var connection = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=quizdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            services.AddDbContext<QuizContext>(opt => { opt.UseSqlServer(connection); });
+            services.AddDbContext<UserDbContext>(opt => { opt.UseSqlServer(connection); });
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<UserDbContext>();
 
