@@ -11,7 +11,9 @@ export class QuizComponent implements OnInit {
 
   quiz = {};
   quizzes: any = [];
-  id;
+  id;  
+  levels = ['Easy', 'Meduim', 'Hard', 'Difficult']
+
   constructor(
     private api: ApiService,
     private router: Router,
@@ -73,3 +75,4 @@ export class QuizComponent implements OnInit {
   }
 
 }
+

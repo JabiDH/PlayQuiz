@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -10,14 +10,16 @@ export class ApiService{
     questionSelected = this.selectedQuestion.asObservable();
 
     private selectedQuiz = new Subject<any>();
-    quizSelected = this.selectedQuiz.asObservable();
+    quizSelected = this.selectedQuiz.asObservable();    
 
-    constructor(private http: HttpClient, private router: Router){        
+    constructor(private http: HttpClient, private router: Router){                        
     }
 
+    
     // QUESTION CRUD
 
-    getQuestions(quizId){
+    getQuestions(quizId){        
+        
         return this.http.get(`http://localhost:18080/api/questions/${quizId}`);
     }
 

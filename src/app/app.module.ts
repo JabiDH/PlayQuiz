@@ -8,9 +8,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { MatListModule } from '@angular/material/list';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component'
 import { QuestionComponent } from './question/question.component'
@@ -26,19 +27,19 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PlayComponent } from './play/play.component';
 import { PlayQuizComponent } from './play-quiz/play-quiz.component';
-import { FinishedComponent} from './finished/finished.component';
+import { FinishedComponent } from './finished/finished.component';
 
 const routes = [
-  { path:'', component: HomeComponent},
-  { path:'quiz', component: QuizComponent},
-  { path: 'quiz/:id', component: QuizComponent},
-  { path:'quizzes', component: QuizzesComponent},
-  { path:'question', component: QuestionComponent},
-  { path: 'question/:quizId', component: QuestionComponent},
-  { path:'register', component: RegisterComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'play', component: PlayComponent},
-  { path: 'playQuiz/:quizId', component: PlayQuizComponent} 
+  { path: '', component: HomeComponent },
+  { path: 'quiz', component: QuizComponent },
+  { path: 'quiz/:id', component: QuizComponent },
+  { path: 'quizzes', component: QuizzesComponent },
+  { path: 'question', component: QuestionComponent },
+  { path: 'question/:quizId', component: QuestionComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'play', component: PlayComponent },
+  { path: 'playQuiz/:quizId', component: PlayQuizComponent }
 ]
 
 @NgModule({
@@ -53,34 +54,35 @@ const routes = [
     RegisterComponent,
     LoginComponent,
     PlayComponent,
-    PlayQuizComponent, 
-    FinishedComponent   
+    PlayQuizComponent,
+    FinishedComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     MatButtonModule,
     MatInputModule,
     MatCardModule,
     FormsModule,
-    HttpClientModule, 
+    HttpClientModule,
     MatListModule,
     MatToolbarModule,
     ReactiveFormsModule,
     MatExpansionModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
-  providers: [ApiService, 
-    AuthService, 
+  providers: [ApiService,
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     }
   ],
-  bootstrap: [AppComponent], 
+  bootstrap: [AppComponent],
   entryComponents: [FinishedComponent]
 })
 
