@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,8 +31,7 @@ namespace backend.Controllers
 
             return Ok(context.Quizzes.Where(q => q.OwnerId == userId).ToList());
         }
-
-        [Authorize]
+      
         [HttpGet]
         [Route("all")]
         public async Task<IActionResult> GetAllQuizzes()

@@ -6,14 +6,14 @@
   <mat-card-content>
     <form>
       <mat-form-field class="fullWidth">
-        <input required [(ngModel)]="quiz.title" name="title" matInput placeholder="Quiz Title">        
-        <mat-form-field>
-          <mat-select required placeholder="Quiz Level" [(value)]="quiz.level">
-            <mat-option *ngFor="let level of levels; let i = index" [value]="i">
-              {{level}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <input required [(ngModel)]="quiz.title" name="title" matInput placeholder="Quiz Title">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select required placeholder="Quiz Level" [(value)]="quiz.level" class="fullWidth">
+          <mat-option *ngFor="let level of levels; let i = index" [value]="i">
+            {{level}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </form>
   </mat-card-content>

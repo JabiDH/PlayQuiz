@@ -1,6 +1,6 @@
-<mat-toolbar>
-  <button mat-button routerLink='/quiz'>Quiz</button>
+<mat-toolbar>  
   <button mat-button routerLink='/play'>Play</button>
+  <button *ngIf="auth.isAuthenticated" mat-button routerLink='/quiz'>Quiz</button>
   <span style="flex: 1 1 auto;"></span> 
   <button *ngIf="!auth.isAuthenticated" mat-button routerLink='/register'>Register</button>  
   <button *ngIf="!auth.isAuthenticated" mat-button routerLink='/login'>Login</button>

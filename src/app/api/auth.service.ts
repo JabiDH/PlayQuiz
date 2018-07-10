@@ -4,36 +4,54 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable()
-export class AuthService{
+export class AuthService {
 
-    constructor(private http: HttpClient, private router: Router){        
+    constructor(private http: HttpClient, private router: Router) {
     }
 
-    get isAuthenticated(){
+    get isAuthenticated() {
         return !!localStorage.getItem('token');
     }
 
     // QUESTION CRUD
 
-    register(credentials){
-        this.http.post<any>(`http://localhost:18080/api/account`, credentials).subscribe(res =>{
+    register(credentials) {
+        this.http.post<any>(`http://localhost:18080/api/account`, credentials).subscribe(res => {
+            console.log("register ,,, ");
             this.authenticate(res);
+        }, httpError => {
+            this.displayEditMessage(httpError);
         })
     }
 
-    login(credentials){
-        this.http.post<any>(`http://localhost:18080/api/account/login`, credentials).subscribe(res =>{
+    login(credentials) {
+        this.http.post<any>(`http://localhost:18080/api/account/login`, credentials).subscribe(res => {
             this.authenticate(res);
+        }, httpError => {
+            this.displayEditMessage(httpError);
         })
     }
 
-    authenticate(res){
+    authenticate(res) {
         localStorage.setItem('token', res);
         this.router.navigate(['/']);
     }
 
-    logout(){
+    logout() {
         localStorage.removeItem('token');
     }
-   
+
+    displayEditMessage(httpError) {
+        if (httpError) {
+            console.log(httpError);
+            if (httpError.error) {
+                var errorMsg = '';
+                httpError.error.forEach(err => {
+                    errorMsg += `${httpError.error[0].code} : ${httpError.error[0].description} \n`
+                });
+                alert(errorMsg);
+            }
+        }
+    }
+
 }

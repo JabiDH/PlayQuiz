@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -53,7 +53,12 @@ namespace backend.Controllers
             var result = await signInManager.PasswordSignInAsync(credentials.Email, credentials.Password, false, false);
             if (!result.Succeeded)
             {
-                return BadRequest();
+                IdentityError error = new IdentityError() { Code = "Invalid Credentails", Description = "Please make sure your credentials is correct." };
+                var errors = new List<IdentityError>
+                {
+                  error
+                };
+                return BadRequest(errors);
             }
 
             var user = await userManager.FindByEmailAsync(credentials.Email);
