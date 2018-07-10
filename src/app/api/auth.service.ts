@@ -39,6 +39,7 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('token');
+        this.router.navigate(['/']);
     }
 
     displayEditMessage(httpError) {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { ApiService } from '../api/api.service'
 import { Router, ActivatedRoute } from '@angular/router'
 import { QuizzesComponent } from '../quizzes/quizzes.component'
+import { AuthService } from '../api/auth.service'
+
 @Component({
   selector: 'quiz',
   templateUrl: './quiz.component.html',
@@ -11,26 +13,32 @@ export class QuizComponent implements OnInit {
 
   quiz = {};
   quizzes: any = [];
-  id;  
+  id;
   levels = ['Easy', 'Meduim', 'Hard', 'Difficult']
 
   constructor(
     private api: ApiService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.api.quizSelected.subscribe(q => this.quiz = q);
-    if (this.id) {
-      this.api.getQuizById(this.id).subscribe(q => {
-        if (q) {
-          this.quiz = q;
-        }
-      });
+    console.log("Is authenticated : " + this.auth.isAuthenticated);
+    if (this.auth.isAuthenticated == true) {
+      this.id = this.route.snapshot.paramMap.get('id');
+      this.api.quizSelected.subscribe(q => this.quiz = q);
+      if (this.id) {
+        this.api.getQuizById(this.id).subscribe(q => {
+          if (q) {
+            this.quiz = q;
+          }
+        });
+      }
+      this.getQuizzes();
+    }else{
+      this.router.navigateByUrl("/login");
     }
-    this.getQuizzes();
   }
 
   post(quiz) {
@@ -40,23 +48,23 @@ export class QuizComponent implements OnInit {
           console.log(res);
           this.getQuizzes();
           //this.quizzes.push(res);
-          this.router.navigateByUrl(`/quiz/${res.id}`);          
+          this.router.navigateByUrl(`/quiz/${res.id}`);
         }
       });
     }
   }
 
   put(quiz) {
-    this.api.putQuiz(quiz).subscribe(res =>{
+    this.api.putQuiz(quiz).subscribe(res => {
       this.getQuizzes();
-            //this.router.navigateByUrl('quiz');
-        });
+      //this.router.navigateByUrl('quiz');
+    });
     //this.router.navigateByUrl('quizzes');
   }
 
   delete(quiz) {
     this.api.deleteQuiz(quiz).subscribe(res => {
-      if(res){
+      if (res) {
         console.log(res);
         this.getQuizzes();
         //this.quizzes.pop(quiz => quiz.id == res.id);

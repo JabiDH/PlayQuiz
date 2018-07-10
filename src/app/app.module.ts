@@ -34,6 +34,7 @@ const routes = [
   { path: 'quiz', component: QuizComponent },
   { path: 'quiz/:id', component: QuizComponent },
   { path: 'quizzes', component: QuizzesComponent },
+  { path: 'questions', component: QuestionsComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'question/:quizId', component: QuestionComponent },
   { path: 'register', component: RegisterComponent },
