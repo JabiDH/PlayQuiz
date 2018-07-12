@@ -10,13 +10,13 @@
           <mat-panel-description>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-radio-group [(ngModel)]="question.selectedAnswer">
+        <mat-radio-group [(ngModel)]="question.selectedAnswer" >
           <mat-radio-button class="fullWidth" *ngFor="let answer of question.answers" [value]="answer">
             {{answer}}
           </mat-radio-button>
         </mat-radio-group>
         <mat-action-row>
-          <button mat-button color="primary" (click)="nextStep()">Next</button>
+          <button mat-button color="primary" (click)="nextStep(question)">Next</button>
         </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>

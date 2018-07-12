@@ -15,31 +15,35 @@ export class PlayQuizComponent implements OnInit {
   questions;
   step = 0;
 
-  constructor(private api: ApiService, 
+  constructor(private api: ApiService,
     private route: ActivatedRoute,
-    private dialog: MatDialog) { 
+    private dialog: MatDialog) {
 
-    }
+  }
 
-  ngOnInit() { 
-    
+  ngOnInit() {
+
     this.quizId = this.route.snapshot.paramMap.get('quizId');
 
-    this.api.getQuestions(this.quizId).subscribe(res => {      
-      if(res){
-      this.questions = res;
-      this.questions.forEach(q => {
-        q.answers = [q.correctAnswer, q.answer1, q.answer2, q.answer3]
-        q.answers = this.shuffle(q.answers);
-      });
-    }
-  }); 
+    this.api.getQuestions(this.quizId).subscribe(res => {
+      if (res) {
+        this.questions = res;
+        this.questions.forEach(q => {
+          q.answers = [q.correctAnswer, q.answer1, q.answer2, q.answer3]
+          q.answers = this.shuffle(q.answers);
+        });
+      }
+    });
   }
   setStep(index: number) {
     this.step = index;
   }
 
-  nextStep() {
+  nextStep(question) {
+    if(question.selectedAnswer == null){
+      alert("Please choose an answer.");
+      return;
+    }
     this.step++;
   }
 
@@ -49,24 +53,37 @@ export class PlayQuizComponent implements OnInit {
 
   shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
+      let j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
-}
+  }
 
-  finish(){
+  finish() {
+    if(this.isAllQuestionsAnswered()){
     var correct = 0;
     this.questions.forEach(q => {
-      if(q.correctAnswer == q.selectedAnswer){
+      if (q.correctAnswer == q.selectedAnswer) {
         correct++;
       }
     });
     let dialogRef = this.dialog.open(FinishedComponent, {
-      
-      data: {correct, total: this.questions.length}
+
+      data: { correct, total: this.questions.length }
     });
-    console.log("correct# " + correct);
+    }else{
+      alert("Please make sure you've answered all questions.");
+    }
   }
-        
+
+  isAllQuestionsAnswered(){
+    let isAllAns = true;
+    this.questions.forEach(q => {
+      if (q.selectedAnswer == null) {
+        isAllAns = false;
+      }
+    });
+    return isAllAns;
+  }
+
 }
