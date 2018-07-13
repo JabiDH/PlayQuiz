@@ -47,6 +47,7 @@ Thumbs.db
 # Database file 
 *.ldf
 
-!.ide-shm
-!.ide-wal
-!.mdf
+!.vs/backend/v15/Server/sqlite3/storage.ide-shm
+!.vs/backend/v15/Server/sqlite3/storage.ide-wal
+!backend/quizdb.mdf
+!dont track.txt
