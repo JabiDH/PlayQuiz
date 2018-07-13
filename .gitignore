@@ -46,3 +46,7 @@ Thumbs.db
 
 # Database file 
 *.ldf
+
+!.ide-shm
+!.ide-wal
+!.mdf
