@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace backend.Migrations
@@ -12,9 +12,10 @@ namespace backend.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),                    
                     Title = table.Column<string>(nullable: true),
-                    OwnerId = table.Column<string>(nullable: true)
+                    OwnerId = table.Column<string>(nullable: true),
+                    Level = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
