@@ -66,6 +66,36 @@ namespace backend.Controllers
             return Ok(CreateToken(user));
         }
 
+    [HttpPost("delete")]
+    public async Task<IActionResult> Delete([FromBody] Credentials credentials)
+    {
+        IdentityError error = null;
+        var userToDelete = userManager.Users.SingleOrDefault(user => user.Email.Equals(credentials.Email));
+        if (userToDelete != null)
+        {
+            if (await userManager.CheckPasswordAsync(userToDelete, credentials.Password))
+            {
+                var result = await userManager.DeleteAsync(userToDelete);
+                if (!result.Succeeded)
+                {
+                    return BadRequest(result.Errors);
+                }
+            }
+            else
+            {
+                error = new IdentityError() { Code = "Invalid Credentails", Description = "Please make sure your credentials is correct." };
+            }
+        }
+        else
+        {
+          error = new IdentityError() { Code = "Not Found", Description = "Username not exist." };
+        }
+
+        if(error != null) return BadRequest(error);
+
+        return Ok();
+    }
+
         private string CreateToken(IdentityUser user)
         {
             var claims = new Claim[] {

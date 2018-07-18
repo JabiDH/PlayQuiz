@@ -35,8 +35,7 @@ namespace backend_xunit
             {
                 var response = await client.GetAsync("/api/questions/1");
                 response.EnsureSuccessStatusCode();                
-                Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-                ;
+                Assert.Equal(HttpStatusCode.OK, response.StatusCode);                
             }
         }
 

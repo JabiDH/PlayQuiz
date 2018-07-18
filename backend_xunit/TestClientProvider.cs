@@ -1,4 +1,4 @@
-﻿using backend;
+using backend;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using System;
