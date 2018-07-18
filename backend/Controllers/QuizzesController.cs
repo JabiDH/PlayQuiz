@@ -42,8 +42,16 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var quiz = this.context.Quizzes.SingleOrDefaultAsync(q => q.Id == id).Result;
-            return Ok(quiz);
+            var userId = HttpContext.User.Claims.First().Value;
+            var quiz = this.context.Quizzes.Where(q => q.OwnerId == userId).SingleOrDefaultAsync(q => q.Id == id).Result;
+            if (quiz != null)
+            {
+              return Ok(quiz);
+            }
+            else
+            {
+              return NotFound(id);
+            }      
         }
 
         [Authorize]
