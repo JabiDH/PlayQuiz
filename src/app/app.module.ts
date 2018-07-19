@@ -12,6 +12,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component'
 import { QuestionComponent } from './question/question.component'
@@ -28,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { PlayComponent } from './play/play.component';
 import { PlayQuizComponent } from './play-quiz/play-quiz.component';
 import { FinishedComponent } from './finished/finished.component';
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
 
 const routes = [
   { path: '', component: HomeComponent },
@@ -40,7 +43,8 @@ const routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'play', component: PlayComponent },
-  { path: 'playQuiz/:quizId', component: PlayQuizComponent }
+  { path: 'playQuiz/:quizId', component: PlayQuizComponent },
+  { path: 'deleteAccount', component: DeleteAccountComponent }
 ]
 
 @NgModule({
@@ -56,7 +60,8 @@ const routes = [
     LoginComponent,
     PlayComponent,
     PlayQuizComponent,
-    FinishedComponent
+    FinishedComponent,
+    DeleteAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,9 @@ const routes = [
     MatExpansionModule,
     MatRadioModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [ApiService,
     AuthService,

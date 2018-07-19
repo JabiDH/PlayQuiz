@@ -42,6 +42,14 @@ export class AuthService {
         this.router.navigate(['/']);
     }
 
+    deleteAccount(credentials){
+        this.http.post<any>(`http://localhost:18080/api/account/delete`, credentials).subscribe(res => {
+            this.logout();
+        }, httpError => {
+            this.displayEditMessage(httpError);
+        })
+    }
+
     displayEditMessage(httpError) {
         if (httpError) {
             console.log(httpError);
