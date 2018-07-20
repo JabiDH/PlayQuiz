@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-
+    
     constructor(private http: HttpClient, private router: Router) {
     }
 
@@ -13,12 +13,16 @@ export class AuthService {
         return !!localStorage.getItem('token');
     }
 
+    get whoAmI(){
+        return localStorage.getItem('username');
+    }
+
     // QUESTION CRUD
 
     register(credentials) {
         this.http.post<any>(`http://localhost:18080/api/account`, credentials).subscribe(res => {
             console.log("register ,,, ");
-            this.authenticate(res);
+            this.authenticate(res, credentials);
         }, httpError => {
             this.displayEditMessage(httpError);
         })
@@ -26,18 +30,20 @@ export class AuthService {
 
     login(credentials) {
         this.http.post<any>(`http://localhost:18080/api/account/login`, credentials).subscribe(res => {
-            this.authenticate(res);
+            this.authenticate(res, credentials);            
         }, httpError => {
             this.displayEditMessage(httpError);
         })
     }
 
-    authenticate(res) {
+    authenticate(res, credentials) {
+        localStorage.setItem('username', credentials.email);
         localStorage.setItem('token', res);
         this.router.navigate(['/']);
     }
 
     logout() {
+        localStorage.removeItem('username');
         localStorage.removeItem('token');
         this.router.navigate(['/']);
     }

@@ -3,9 +3,12 @@
   <button *ngIf="auth.isAuthenticated" mat-button routerLink='/quiz'>Quiz</button>
   <span style="flex: 1 1 auto;"></span> 
 
-  <button mat-button [matMenuTriggerFor]="menu">
-    My Account
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="!auth.isAuthenticated">
+    Account
   </button>
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="auth.isAuthenticated">
+    Account ({{auth.whoAmI}})
+  </button>  
   <mat-menu #menu="matMenu">
     <button mat-menu-item  *ngIf="!auth.isAuthenticated" routerLink='/register'>      
       <span>Register</span>
