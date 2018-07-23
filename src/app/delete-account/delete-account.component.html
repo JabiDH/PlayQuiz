@@ -1,7 +1,7 @@
 <mat-card>
   <form [formGroup]="form" (ngSubmit)="deleteAccount()">
     <mat-form-field>
-      <input matInput type="email" placeholder="Email" formControlName="email" >
+      <input matInput type="email" placeholder="Email" formControlName="email" [value]="auth.whoAmI" >
     </mat-form-field>
     <mat-form-field>
       <input matInput type="password" placeholder="Password" formControlName="password" >

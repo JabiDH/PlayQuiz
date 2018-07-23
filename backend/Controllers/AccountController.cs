@@ -91,7 +91,13 @@ namespace backend.Controllers
           error = new IdentityError() { Code = "Not Found", Description = "Username not exist." };
         }
 
-        if(error != null) return BadRequest(error);
+        if (error != null)
+        {            
+            var errors = new List<IdentityError>{
+                error
+            };
+            return BadRequest(errors);
+        }
 
         return Ok();
     }
