@@ -17,8 +17,6 @@ export class AuthService {
         return localStorage.getItem('username');
     }
 
-    // QUESTION CRUD
-
     register(credentials) {
         this.http.post<any>(`http://localhost:18080/api/account`, credentials).subscribe(res => {
             console.log("register ,,, ");
@@ -51,6 +49,16 @@ export class AuthService {
     deleteAccount(email, password){
         this.http.post<any>(`http://localhost:18080/api/account/delete`, {"email": email, password: password }).subscribe(res => {
             this.logout();
+        }, httpError => {
+            this.displayEditMessage(httpError);
+        })
+    }
+
+    changePassword(credentials){
+        credentials.email = this.whoAmI;
+        this.http.post<any>(`http://localhost:18080/api/account/changepassword`, credentials).subscribe(res => {
+            alert("Password is changed.");
+            this.router.navigate(['/']);
         }, httpError => {
             this.displayEditMessage(httpError);
         })

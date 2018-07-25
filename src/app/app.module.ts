@@ -31,6 +31,7 @@ import { PlayComponent } from './play/play.component';
 import { PlayQuizComponent } from './play-quiz/play-quiz.component';
 import { FinishedComponent } from './finished/finished.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes = [
   { path: '', component: HomeComponent },
@@ -44,7 +45,8 @@ const routes = [
   { path: 'login', component: LoginComponent },
   { path: 'play', component: PlayComponent },
   { path: 'playQuiz/:quizId', component: PlayQuizComponent },
-  { path: 'deleteAccount', component: DeleteAccountComponent }
+  { path: 'deleteAccount', component: DeleteAccountComponent },
+  { path: 'changePassword', component: ChangePasswordComponent }
 ]
 
 @NgModule({
@@ -61,7 +63,8 @@ const routes = [
     PlayComponent,
     PlayQuizComponent,
     FinishedComponent,
-    DeleteAccountComponent
+    DeleteAccountComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,8 @@ namespace backend.Controllers
     public class Credentials {
         public string Email { get; set; }
         public string Password { get; set; }
+        public string NewPassword { get; set; }
+        public string ConfirmNewPassword { get; set; }
     }
     [Produces("application/json")]
     [Route("api/Account")]
@@ -66,43 +68,78 @@ namespace backend.Controllers
             return Ok(CreateToken(user));
         }
 
-    [HttpPost("delete")]
-    public async Task<IActionResult> Delete([FromBody] Credentials credentials)
-    {
-        IdentityError error = null;
-        var userToDelete = userManager.Users.SingleOrDefault(user => user.Email.Equals(credentials.Email));
-        if (userToDelete != null)
+        [HttpPost("delete")]
+        public async Task<IActionResult> Delete([FromBody] Credentials credentials)
         {
-            if (await userManager.CheckPasswordAsync(userToDelete, credentials.Password))
+            IdentityError error = null;
+            var userToDelete = userManager.Users.SingleOrDefault(user => user.Email.Equals(credentials.Email));
+            if (userToDelete != null)
             {
-                var result = await userManager.DeleteAsync(userToDelete);
-                if (!result.Succeeded)
+                if (await userManager.CheckPasswordAsync(userToDelete, credentials.Password))
                 {
-                    return BadRequest(result.Errors);
+                    var result = await userManager.DeleteAsync(userToDelete);
+                    if (!result.Succeeded)
+                    {
+                        return BadRequest(result.Errors);
+                    }
+                }
+                else
+                {
+                    error = new IdentityError() { Code = "Invalid Credentails", Description = "Please make sure your credentials is correct." };
                 }
             }
             else
             {
-                error = new IdentityError() { Code = "Invalid Credentails", Description = "Please make sure your credentials is correct." };
+              error = new IdentityError() { Code = "Not Found", Description = "Username not exist." };
             }
+
+            if (error != null)
+            {            
+                var errors = new List<IdentityError>{
+                    error
+                };
+                return BadRequest(errors);
+            }
+
+            return Ok();
         }
-        else
+
+        [HttpPost("changepassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] Credentials credentials)
         {
-          error = new IdentityError() { Code = "Not Found", Description = "Username not exist." };
+            IdentityError error = null;
+            var userToChangePassword = userManager.Users.SingleOrDefault(user => user.Email.Equals(credentials.Email));
+            if (userToChangePassword != null)
+            {
+                if (await userManager.CheckPasswordAsync(userToChangePassword, credentials.Password))
+                {
+                    var result = await userManager.ChangePasswordAsync(userToChangePassword, credentials.Password, credentials.NewPassword);
+                    if (!result.Succeeded)
+                    {
+                        return BadRequest(result.Errors);
+                    }
+                }
+                else
+                {
+                    error = new IdentityError() { Code = "Invalid Credentails", Description = "Please make sure your credentials is correct." };
+                }
+            }
+            else
+            {
+                error = new IdentityError() { Code = "Not Found", Description = "Username not exist." };
+            }
+
+            if (error != null)
+            {
+                var errors = new List<IdentityError>{
+                            error
+                        };
+                return BadRequest(errors);
+            }
+
+            return Ok();
         }
-
-        if (error != null)
-        {            
-            var errors = new List<IdentityError>{
-                error
-            };
-            return BadRequest(errors);
-        }
-
-        return Ok();
-    }
-
-        private string CreateToken(IdentityUser user)
+    private string CreateToken(IdentityUser user)
         {
             var claims = new Claim[] {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id)

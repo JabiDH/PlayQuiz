@@ -19,6 +19,9 @@
     <button mat-menu-item *ngIf="auth.isAuthenticated" (click)="auth.logout()">
       <span>Logout</span>
     </button>
+    <button mat-menu-item *ngIf="auth.isAuthenticated" routerLink='/changePassword'>
+      <span>Change Password</span>
+    </button>
     <button mat-menu-item *ngIf="auth.isAuthenticated" routerLink='/deleteAccount'>
       <span>Delete Account</span>
     </button>
