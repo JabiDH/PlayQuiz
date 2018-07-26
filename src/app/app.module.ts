@@ -20,6 +20,7 @@ import { QuestionComponent } from './question/question.component'
 import { ApiService } from './api/api.service';
 import { AuthService } from './api/auth.service';
 import { AuthInterceptor } from './api/auth.interceptor';
+import { ExceptionHandler } from './exception-handler/exception.handler';
 import { QuestionsComponent } from './questions/questions.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
@@ -91,7 +92,8 @@ const routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    ExceptionHandler
   ],
   bootstrap: [AppComponent],
   entryComponents: [FinishedComponent]

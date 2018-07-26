@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../api/auth.service';
+import { ExceptionHandler } from '../exception-handler/exception.handler';
 
 @Component({
-  selector: 'app-register',
+  selector: 'register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
 
   form;
-  
-  constructor(private fb: FormBuilder, private auth: AuthService){
+  email = new FormControl('', [Validators.required, Validators.email]);
+  passwword = new FormControl('', [Validators.required]);
+
+  constructor(private fb: FormBuilder, private auth: AuthService, private exceptionHandler: ExceptionHandler){        
     this.form = fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: this.email,
+      password: this.passwword
     })
   }
 
@@ -23,6 +26,7 @@ export class RegisterComponent implements OnInit {
 
   register(){
     this.auth.register(this.form.value);
-  }  
+  }
+   
 
 }

@@ -1,11 +1,13 @@
 <mat-card>
   <form [formGroup]="form" (ngSubmit)="deleteAccount()">
-    <mat-form-field>
-      <input matInput type="email" placeholder="Email" formControlName="email" [value]="auth.whoAmI" >
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="password" placeholder="Password" formControlName="password" >
-    </mat-form-field>
-    <button mat-raised-button color="warn" [disabled]="!form.valid">Delete Account</button>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email" formControlName="email" [value]="auth.whoAmI">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" formControlName="password" required>
+      </mat-form-field>
+      <button mat-raised-button color="warn" [disabled]="!form.valid">Delete Account</button>
+    </div>
   </form>
 </mat-card>

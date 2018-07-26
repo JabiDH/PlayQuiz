@@ -37,10 +37,10 @@ export class ChangePasswordComponent implements OnInit {
     let password = AC.get('newPassword').value; // to get value in input tag
     let confirmPassword = AC.get('confirmNewPassword').value; // to get value in input tag
     if (password != confirmPassword) {
-      console.log('false');
+      //console.log('false');      
       AC.get('confirmNewPassword').setErrors({ MatchPassword: true })
     } else {
-      console.log('true');
+      //console.log('true');
       return null
     }
   }
