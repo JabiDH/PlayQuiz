@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "backend", "backend\backend.csproj", "{94E2BFE9-8A0A-4D23-ACC0-36A9FD374E94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend_xunit", "backend_xunit\backend_xunit.csproj", "{A0C2BC92-556A-41E1-BE45-4C13B2F59859}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "backend_xunit", "backend_xunit\backend_xunit.csproj", "{A0C2BC92-556A-41E1-BE45-4C13B2F59859}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A4281809-1416-4818-A321-C69B0BEF98C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A0C2BC92-556A-41E1-BE45-4C13B2F59859}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C2BC92-556A-41E1-BE45-4C13B2F59859}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C2BC92-556A-41E1-BE45-4C13B2F59859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4281809-1416-4818-A321-C69B0BEF98C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4281809-1416-4818-A321-C69B0BEF98C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4281809-1416-4818-A321-C69B0BEF98C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4281809-1416-4818-A321-C69B0BEF98C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

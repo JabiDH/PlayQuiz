@@ -1,0 +1,11 @@
+services:
+  backend:
+    build:
+      context: D:\git\PlayQuiz
+      dockerfile: backend/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: backend
+    ports:
+    - 80/tcp
+version: '3.0'
