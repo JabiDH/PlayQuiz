@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace backend.Data
 {
-    public class UserDbContext : IdentityDbContext<IdentityUser>
+  public class UserDbContext : IdentityDbContext<IdentityUser>
+  {
+    public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
     {
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
-        {
 
-        }
     }
+  }
 }

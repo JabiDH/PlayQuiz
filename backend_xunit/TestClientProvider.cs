@@ -8,21 +8,21 @@ using System.Text;
 
 namespace backend_xunit
 {
-    public class TestClientProvider : IDisposable
+  public class TestClientProvider : IDisposable
+  {
+    private TestServer Server;
+    public HttpClient Client { get; private set; }
+
+    public TestClientProvider()
     {
-        private TestServer Server;
-        public HttpClient Client { get; private set; }
-
-        public TestClientProvider()
-        {
-            this.Server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
-            this.Client = this.Server.CreateClient();
-        }
-
-        public void Dispose()
-        {
-            this.Server?.Dispose();
-            this.Client?.Dispose();
-        }
+      this.Server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
+      this.Client = this.Server.CreateClient();
     }
+
+    public void Dispose()
+    {
+      this.Server?.Dispose();
+      this.Client?.Dispose();
+    }
+  }
 }
