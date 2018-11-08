@@ -47,8 +47,7 @@ export class QuizComponent implements OnInit {
         if (res) {
           console.log(res);
           this.getQuizzes();
-          //this.quizzes.push(res);
-          this.router.navigateByUrl(`/quiz/${res.id}`);
+          this.api.selectQuiz(res);          
         }
       });
     }
@@ -66,18 +65,25 @@ export class QuizComponent implements OnInit {
     this.api.deleteQuiz(quiz).subscribe(res => {
       if (res) {
         console.log(res);
-        this.getQuizzes();
-        //this.quizzes.pop(quiz => quiz.id == res.id);
+        this.getQuizzes();        
         this.router.navigateByUrl('quiz');
       }
     });
+  }
+  
+  deleteQuizzes(){
+    this.api.deleteQuizzes().subscribe(res => {
+        console.log(res);
+        this.getQuizzes();
+        this.router.navigateByUrl('quiz');
+    })
   }
 
   getQuizzes() {
     this.api.getQuizzes().subscribe(res => {
       if (res) {
         this.quizzes = res;
-        //console.log(this.quizzes);
+        console.log(this.quizzes);
       }
     });
   }

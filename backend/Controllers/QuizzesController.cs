@@ -93,5 +93,25 @@ namespace backend.Controllers
         return NotFound(id);
       }
     }
+
+    
+    [HttpDelete]
+    [Route("deleteAll")]
+    public async Task<IActionResult> DeleteAllQuizzes()
+    {
+      var userId = HttpContext.User.Claims.First().Value;
+      var quizzes = this.context.Quizzes.Where(q => q.OwnerId == userId);
+      
+      if(quizzes != null && quizzes.ToList().Count() > 0)
+      {
+        this.context.Quizzes.RemoveRange(quizzes);
+        await this.context.SaveChangesAsync();
+        return Ok();
+      }
+      else
+      {
+        return NotFound();
+      }
+    }
   }
 }
