@@ -23,7 +23,8 @@ namespace backend
   {
     public Startup(IConfiguration configuration, ILoggerFactory loggerFactory)
     {
-      loggerFactory.ConfigureNLog(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+      //string.Concat(Directory.GetCurrentDirectory().Replace("_xunit", ""),
+      loggerFactory.ConfigureNLog( "../../../../backend/nlog.config");
       Configuration = configuration;
     }
 
@@ -39,9 +40,7 @@ namespace backend
               .AllowAnyMethod()
               .AllowAnyHeader();
       }));
-      var connection = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=quizdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-      //var connection = @"Server=tcp:gabih.database.windows.net,1433;Initial Catalog=quizdb;Persist Security Info=False;User ID=gabih;Password=Password@1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-      //var connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=quizdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+      var connection = @"Data Source=JABIHDESKTOP;Initial Catalog=Quizdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
       services.AddDbContext<QuizContext>(opt => { opt.UseSqlServer(connection); });
       services.AddDbContext<UserDbContext>(opt => { opt.UseSqlServer(connection); });
 

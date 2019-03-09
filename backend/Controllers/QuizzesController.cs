@@ -40,6 +40,7 @@ namespace backend.Controllers
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<IActionResult> Get(int id)
     {
       var userId = HttpContext.User.Claims.First().Value;
@@ -66,6 +67,7 @@ namespace backend.Controllers
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> Put(int id, [FromBody] Quiz quiz)
     {
       if (id != quiz.Id)
@@ -79,6 +81,7 @@ namespace backend.Controllers
 
     // DELETE api/values/5
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
       var quiz = this.context.Quizzes.SingleOrDefaultAsync(q => q.Id == id).Result;
@@ -97,6 +100,7 @@ namespace backend.Controllers
     
     [HttpDelete]
     [Route("deleteAll")]
+    [Authorize]
     public async Task<IActionResult> DeleteAllQuizzes()
     {
       var userId = HttpContext.User.Claims.First().Value;

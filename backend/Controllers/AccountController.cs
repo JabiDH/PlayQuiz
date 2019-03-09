@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -70,6 +71,7 @@ namespace backend.Controllers
     }
 
     [HttpPost("delete")]
+    [Authorize]
     public async Task<IActionResult> Delete([FromBody] Credentials credentials)
     {
       IdentityError error = null;
@@ -106,6 +108,7 @@ namespace backend.Controllers
     }
 
     [HttpPost("changepassword")]
+    [Authorize]
     public async Task<IActionResult> ChangePassword([FromBody] Credentials credentials)
     {
       IdentityError error = null;

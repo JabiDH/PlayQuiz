@@ -34,7 +34,7 @@ namespace backend_xunit
     public async void TestLogin()
     {
       using (var client = this.provider.Client)
-      {
+      {        
         var response = await client.PostAsync("/api/account/login",
           new StringContent(
             JsonConvert.SerializeObject(new Credentials() { Email = "Test@gmail.com", Password = "Pass@123" }), System.Text.Encoding.UTF8, "application/json"));

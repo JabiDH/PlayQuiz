@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend.Data;
 using backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +53,7 @@ namespace backend.Controllers
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Post([FromBody]Question question)
     {
       if (question == null || string.IsNullOrWhiteSpace(question.Text))
@@ -69,6 +71,7 @@ namespace backend.Controllers
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> Put(int id, [FromBody] Question question)
     {
       if (id != question.Id)
@@ -82,6 +85,7 @@ namespace backend.Controllers
 
     // DELETE api/values/5
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
       var question = this.context.Questions.SingleOrDefaultAsync(ques => ques.Id == id).Result;
