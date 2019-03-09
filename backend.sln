@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "backend", "backend\backend.csproj", "{94E2BFE9-8A0A-4D23-ACC0-36A9FD374E94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend_xunit", "backend_xunit\backend_xunit.csproj", "{A0C2BC92-556A-41E1-BE45-4C13B2F59859}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "backend_xunit", "backend_xunit\backend_xunit.csproj", "{A0C2BC92-556A-41E1-BE45-4C13B2F59859}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

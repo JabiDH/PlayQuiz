@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class ApiService{
@@ -69,13 +70,17 @@ export class ApiService{
     }
 
     deleteQuiz(quiz): any{
-        return this.http.delete(`http://localhost:18080/api/quizzes/${quiz.id}`, quiz);
+        return this.http.delete(`http://localhost:18080/api/quizzes/${quiz.id}`, quiz);        
     }
 
     selectQuiz(quiz){
         console.log(quiz);
         this.selectedQuiz.next(quiz);
         this.router.navigateByUrl(`/quiz/${quiz.id}`);
+    }
+
+    deleteQuizzes(): any{
+        return this.http.delete('http://localhost:18080/api/quizzes/deleteAll');
     }
    
 }

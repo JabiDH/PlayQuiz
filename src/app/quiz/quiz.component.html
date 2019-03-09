@@ -26,6 +26,9 @@
   </mat-card-actions>
 </mat-card>
 <mat-card>
+    <mat-card-actions>        
+        <button *ngIf="quizzes.length > 0" (click)="deleteQuizzes()" mat-button>DELETE QUIZZES</button>
+      </mat-card-actions>
   <mat-card-content>
     <mat-list *ngFor="let quiz of quizzes">
       <mat-list-item class="clickLink" (click)="api.selectQuiz(quiz)"> {{quiz.title}} </mat-list-item>

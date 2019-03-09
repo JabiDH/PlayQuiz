@@ -46,6 +46,7 @@ Thumbs.db
 
 # Database file 
 *.ldf
+*.mdf
 
 .vs/*
 backend/bin/*
@@ -53,3 +54,17 @@ backend/obj/*
 backend_xunit/bin/*
 backend_xunit/obj/*
 package-lock.json
+
+# Docker Files
+.dockerignore
+.env
+.git
+.gitignore
+.vs
+.vscode
+docker-compose.yml
+docker-compose.*.yml
+*/bin
+*/obj
+!obj/Docker/publish/*
+!obj/Docker/empty/
